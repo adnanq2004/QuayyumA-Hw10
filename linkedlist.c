@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct linkednode {
-  char * str;
-  int n;
-  struct linkednode * next;
-};
+#include "linkedlist.h"
 
 struct linkednode * make_list(char * ptr, int num) {
   struct linkednode * exm = malloc(sizeof(struct linkednode));
@@ -43,15 +38,24 @@ struct linkednode * free_list(struct linkednode * exm) {
 }
 
 struct linkednode * remove_node(struct linkednode *front, int num) {
-  struct linkednode * temp1 = front;
+  struct linkednode * ret = front;
+  struct linkednode * temp;
   struct linkednode * temp2;
-  
-  while (temp1->next) {
-    temp2 = temp1->next;
-    if (temp2->n == num) {
-      temp1->next = temp2-> next;
-      free(temp2);
-    }
-    temp1 = temp2->next;
+  if (front->n == num) {
+    temp = front->next;
+    front->next = NULL;
+    return temp;
   }
+  while (front->next) {
+    temp2 = front->next;
+    if (temp2->n == num) {
+      temp = front->next;
+      front->next = temp2->next;
+      free(temp);
+    }
+    else {
+      front = front->next;
+    }
+  }
+  return ret;
 }

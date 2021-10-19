@@ -1,4 +1,8 @@
-struct linkednode;
+struct linkednode {
+  char * str;
+  int n;
+  struct linkednode * next;
+};
 
 struct linkednode * make_list(char * ptr, int num);
 

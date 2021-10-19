@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linkedlist.h"
 
 int main() {
 
@@ -16,8 +17,10 @@ int main() {
   char * thing3 = &arr3;
   struct linkednode * test3 = insert_front(test1, thing3, 49);
   print_list(test3);
-  struct linkednode  * test4 = free_list(test3);
-  print_list(test3);
+  struct linkednode  * test4 = remove_node(test3, 50);
+  print_list(test4);
+  free_list(test3);
+  print_list(test4);
 
   return 0;
 
